@@ -13,8 +13,7 @@ function ChatBox({ chat }) {
     e.preventDefault();
     if (!newMessage.trim()) return;
     setMessages(prev => [...prev, { id: Date.now(), sender: 'You', text: newMessage }]);
-    setNewMessage('');
-    // TODO: Send message to backend & socket here
+    setNewMessage(''); 
   };
 
   useEffect(() => {

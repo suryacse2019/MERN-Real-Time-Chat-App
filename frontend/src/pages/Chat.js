@@ -5,21 +5,37 @@ import OnlineUsers from '../components/OnlineUsers';
 
 function ChatPage() {
   const [currentChat, setCurrentChat] = useState(null);
-
-  // TODO: Fetch conversations and online users
-
+ 
   return (
-    <div className="app-container">
+    <div className="app-container"> 
       <div className="sidebar">
-        <h2 style={{padding: '15px', borderBottom: '1px solid #444'}}>Conversations</h2>
-        <ConversationList onSelectChat={setCurrentChat} />
-        <OnlineUsers />
+        <div className="sidebar-header">💬 ChatApp</div>
+
+        <div className="section">
+          <h4>Chats</h4>
+          <ConversationList onSelectChat={setCurrentChat} />
+        </div>
+
+        <div className="section">
+          <h4>Online</h4>
+          <OnlineUsers />
+        </div>
       </div>
+ 
       <div className="chat-area">
         {currentChat ? (
-          <ChatBox chat={currentChat} />
+          <>
+            <div className="chat-header">
+              <h3>{currentChat.name}</h3>
+              <span className="status">🟢 Online</span>
+            </div>
+
+            <ChatBox chat={currentChat} />
+          </>
         ) : (
-          <div style={{ padding: '20px' }}>Select a conversation to start chatting</div>
+          <div className="empty-chat">
+            💬 Select a conversation to start chatting
+          </div>
         )}
       </div>
     </div>

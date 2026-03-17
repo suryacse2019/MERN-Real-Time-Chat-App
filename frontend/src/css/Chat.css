@@ -1,0 +1,129 @@
+/* Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: #1e272e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #485460;
+}
+
+.section {
+  padding: 10px;
+}
+
+.section h4 {
+  margin-bottom: 10px;
+  color: #d2dae2;
+}
+
+/* Conversations */
+.conversation-item {
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.conversation-item:hover {
+  background: #485460;
+}
+
+/* Online users */
+.online-user {
+  padding: 8px;
+  font-size: 14px;
+  color: #0be881;
+}
+
+/* Chat Area */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6fa;
+}
+
+/* Chat Header */
+.chat-header {
+  padding: 15px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.status {
+  color: green;
+}
+
+/* Messages */
+.messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Message bubble (add inside Message.js) */
+.message {
+  margin-bottom: 10px;
+  max-width: 60%;
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+
+.message.you {
+  background: #4b7bec;
+  color: white;
+  margin-left: auto;
+}
+
+.message.other {
+  background: #dcdde1;
+}
+
+/* Input */
+.message-input-container {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ddd;
+}
+
+.message-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.send-button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: #4b7bec;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Empty state */
+.empty-chat {
+  margin: auto;
+  font-size: 18px;
+  color: #888;
+}
