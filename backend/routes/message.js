@@ -7,7 +7,11 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const message = await Message.create(req.body);
+    const message = await Message.create({
+      chatId: req.body.chatId,
+      sender: req.user.id, // from token
+      text: req.body.text,
+    });
 
     await Chat.findByIdAndUpdate(req.body.chatId, {
       lastMessage: message._id,

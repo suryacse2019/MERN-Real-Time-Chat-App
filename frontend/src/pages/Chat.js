@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ConversationList from '../components/Conversation';
 import ChatBox from '../components/ChatBox';
 import OnlineUsers from '../components/OnlineUsers';
 
 function ChatPage() {
   const [currentChat, setCurrentChat] = useState(null);
- 
+
+  // ✅ get logged-in user
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // ✅ find other user in chat
+  const otherUser = currentChat?.participants?.find(
+    (p) => p._id !== user?._id
+  );
+
   return (
     <div className="app-container"> 
       <div className="sidebar">
@@ -26,7 +34,8 @@ function ChatPage() {
         {currentChat ? (
           <>
             <div className="chat-header">
-              <h3>{currentChat.name}</h3>
+              {/* ✅ dynamic name */}
+              <h3>{otherUser?.name || "User"}</h3>
               <span className="status">🟢 Online</span>
             </div>
 

@@ -5,10 +5,16 @@ const router = express.Router();
 
 
 router.post("/", async (req, res) => {
+  const { participants } = req.body;
+
   try {
-    const chat = await Chat.create({
-      participants: req.body.participants,
+    let chat = await Chat.findOne({
+      participants: { $all: participants },
     });
+
+    if (!chat) {
+      chat = await Chat.create({ participants });
+    }
 
     res.json(chat);
   } catch (err) {
