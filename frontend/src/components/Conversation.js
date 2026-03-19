@@ -1,22 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import API from '../api.js';
 
-const mockConversations = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Smith' }
-];
+ 
 
 function ConversationList({ onSelectChat }) {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await API.get('/users'); 
+        setUsers(res.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <div className="conversation-list">
-      {mockConversations.map(conv => (
-        <div
-          key={conv.id}
-          className="conversation-item"
-          onClick={() => onSelectChat(conv)}
-        >
-          {conv.name}
-        </div>
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        users.map(user => (
+          <div
+            key={user._id}  
+            className="conversation-item"
+            onClick={() => onSelectChat(user)}
+          >
+            {user.name}
+          </div>
+        ))
+      )}
     </div>
   );
 }
